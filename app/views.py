@@ -42,9 +42,13 @@ def login():
     if request.method == 'POST':
 
         ## Validate user
-        first_name = request.form['first_name']
-        if first_name == "tomer":
-            user = User.query.filter_by(first_name=first_name).first()
+        fn = request.form['first_name']
+        ln = request.form['last_name']
+        uid = request.form['id']
+
+
+        user = User.query.filter_by(first_name= fn , last_name=ln , id =uid).first()
+        if user:
             login_user(user)  ## built in 'flask login' method that creates a user session
             return redirect(url_for('index'))
 
