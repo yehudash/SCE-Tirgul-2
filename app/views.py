@@ -20,6 +20,7 @@ def validateAndAdd(party_name):
     party =  Party.query.filter_by(name=party_name).first()
     party.votes +=  1
 
+
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
