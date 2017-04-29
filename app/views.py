@@ -21,7 +21,6 @@ def validateAndAdd(party_name):
     party.votes +=  1
 
 
-
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
