@@ -11,9 +11,8 @@ class test_login(unittest.TestCase):
 
 
     def test_for_exist_id(self):
-        invalid_login = self.check.post('login' , data=dict(id='invalid' , follow_redirects=True))
-        assert 'Invalid credentials' in invalid_login.data
-
+        invalid_login = self.check.post('login' , data=dict(first_name='tomer' ,last_name = 'admon' ,  follow_redirects=True))
+        self.assertEqual(response.status.code , 400);
 
 if __name__ == '__main__':
     unittest.main() ;
