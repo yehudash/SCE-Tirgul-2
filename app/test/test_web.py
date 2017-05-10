@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 
 import os
@@ -6,14 +7,12 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 
-
 class test_web(unittest.TestCase):
     @classmethod
     def setUp(self):
-        #create a new Firefox session
-        self.browser = webdriver.Firefox()
-
-        #nevigate to the application home page
+        # create a new Firefox session
+        self.browser = webdriver.Firefox(executable_path="/usr/local/sbin/geckodriver")
+        # nevigate to the application home page
         self.browser.get('http://localhost:5000/')
 
     def test_enter_system(self):
@@ -30,7 +29,6 @@ class test_web(unittest.TestCase):
     @classmethod
     def tearDown(self):
         self.browser.quit()
-    
 
 
 if __name__ == '__main__':
