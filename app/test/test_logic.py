@@ -18,7 +18,8 @@ class test_login(unittest.TestCase):
 
     def test_customer_not_exist_in_db(self):
         invalid_customer = self.check.post('login' , data = dict(first_name = 'impostor' , last_name='impostor' , id = '0' ))
-        assert 'המצביע אינו מופיע בבסיס הנתונים' in invalid_customer.data
+        answer = 'המצביע אינו מופיע בבסיס הנתונים' in invalid_customer.data
+        assert answer
 
 
 
