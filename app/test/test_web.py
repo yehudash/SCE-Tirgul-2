@@ -12,6 +12,7 @@ class test_web(unittest.TestCase):
     def setUp(self):
         # create a new Firefox session
         self.browser = webdriver.Firefox(executable_path="/usr/local/sbin/geckodriver")
+        self.browser.capabilities(self.browser.firefox_profile)
         # nevigate to the application home page
         self.browser.get('http://localhost:5000/')
 
