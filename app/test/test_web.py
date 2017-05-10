@@ -5,16 +5,19 @@ import os
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class test_web(unittest.TestCase):
     @classmethod
     def setUp(self):
         # create a new Firefox session
+        capabilities=DesiredCapabilities.FIREFOX
+        capabilities.update({'logLevel': 'ERROR'})
         self.browser = webdriver.Firefox(executable_path="/usr/local/sbin/geckodriver")
-        self.browser.capabilities(self.browser.firefox_profile)
+        s
         # nevigate to the application home page
-        self.browser.get('http://localhost:5000/')
+        self.browser.get('http://localhost:5000/' , capabilities)
 
     def test_enter_system(self):
         first_name = self.browser.find_element_by_id("first_name")
