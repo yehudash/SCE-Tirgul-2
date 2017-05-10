@@ -15,7 +15,7 @@ class test_web(unittest.TestCase):
         id = self.browser.find_element_by_id("id")
         id.send_keys('1234')
         id.send_keys(Keys.ENTER)
-        assert u'המצביע אינו מופיע בבסיס הנתונים' in self.browser.page_source
+        assert False
 
 
 
