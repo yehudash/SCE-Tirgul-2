@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -7,12 +8,15 @@ from selenium.webdriver.common.keys import Keys
 
 
 class test_web(unittest.TestCase):
+    @classmethod
     def setUp(self):
-
+        #create a new Firefox session
         self.browser = webdriver.Firefox()
 
+        #nevigate to the application home page
+        self.browser.get('http://localhost:5000/')
+
     def test_enter_system(self):
-        self.browser.get('http://localhost:5000')
         first_name = self.browser.find_element_by_id("first_name")
         last_name = self.browser.find_element_by_id("last_name")
         id = self.browser.find_element_by_id("id")
@@ -21,9 +25,9 @@ class test_web(unittest.TestCase):
         id.send_keys('123')
         id.send_keys(Keys.RETURN)
 
-        # else :
         assert u'המצביע אינו מופיע בבסיס הנתונים' not in self.browser.page_source or u'המשתמש הנל הצביע כבר' in self.browser.page_source
 
+    @classmethod
     def tearDown(self):
         self.browser.quit()
     
