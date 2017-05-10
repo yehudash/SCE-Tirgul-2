@@ -11,6 +11,7 @@ from selenium.webdriver.common.keys import Keys
 
 class test_web(unittest.TestCase):
     def setUp(self):
+
         self.browser = webdriver.Firefox(executable_path="/home/linux/PycharmProjects/SCE-Tirgul-2/app/test/geckodriver")
 
     def test_enter_system(self):
