@@ -13,8 +13,7 @@ class test_web(unittest.TestCase):
         self.browser.find_element_by_id("first_name").send_keys('tomer')
         self.browser.find_element_by_id("last_name").send_keys('admon')
         id = self.browser.find_element_by_id("id")
-        id.send_keys('1234')
-        id.send_keys(Keys.ENTER)
+        id.send_keys('1234' + Keys.ENTER)
         assert False
 
 
