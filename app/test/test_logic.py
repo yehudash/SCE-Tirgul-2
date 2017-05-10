@@ -18,11 +18,11 @@ class test_login(unittest.TestCase):
 
     def test_customer_not_exist_in_db(self):
         invalid_customer = self.check.post('login' , data = dict(first_name = 'impostor' , last_name='impostor' , id = '1234' ))
-        assert u'המצביע אינו מופיע בבסיס הנתונים' in invalid_customer.data.decode('utf-8')
+        data_str = invalid_customer.data.decode('utf-8')
+        assert u'המצביע אינו מופיע בבסיס הנתונים' in data_str
 
 
-    # def test_skipped(self):
-    #     self.fail("shouldn't happen")
+
 
 
     def tearDown(self):
