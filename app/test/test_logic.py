@@ -20,6 +20,7 @@ class test_login(unittest.TestCase):
         invalid_customer = self.check.post('login' , data = dict(first_name = 'impostor' , last_name='impostor' , id = '1234' ))
         assert u'המצביע אינו מופיע בבסיס הנתונים' in invalid_customer.data.decode('utf-8')
 
+
     # def test_skipped(self):
     #     self.fail("shouldn't happen")
 
