@@ -13,7 +13,6 @@ class test_web(unittest.TestCase):
     def setUp(self):
         # create a new Firefox session
         capabilities=DesiredCapabilities.FIREFOX
-        capabilities.update({'logLevel': 'ERROR'})
         self.browser = webdriver.Firefox(executable_path="/usr/local/sbin/geckodriver")
         s
         # nevigate to the application home page
