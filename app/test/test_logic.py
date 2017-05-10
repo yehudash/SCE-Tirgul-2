@@ -23,6 +23,7 @@ class test_login(unittest.TestCase):
     # def test_skipped(self):
     #     self.fail("shouldn't happen")
 
+
     def tearDown(self):
         del self.check
 
