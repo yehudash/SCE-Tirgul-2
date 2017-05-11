@@ -23,4 +23,4 @@ db.session.add(admon)
 db.session.add(tomer)
 db.session.commit()
 users = User.query.all()
-print users
+print (users)
