@@ -25,6 +25,7 @@ class test_login(unittest.TestCase):
     def tearDown(self):
         del self.check
 
+#note note note note
 
 if __name__ == '__main__':
     unittest.main() ;
