@@ -9,11 +9,6 @@ class test_login(unittest.TestCase):
     def setUp(self):
         self.check =app.test_client()
 
-    def cleanTest(selfself):
-        #clear the data after each test
-        app.data=()
-        app.free_id = 0
-
     def test_manager(self):
         response = self.check.get('app/manager')
         self.assertEqual(response.status_code, 404);
