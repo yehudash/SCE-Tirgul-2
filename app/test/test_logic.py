@@ -27,6 +27,8 @@ class test_login(unittest.TestCase):
     #     assert u'המצביע אינו מופיע בבסיס הנתונים' in invalid_customer.data.decode('utf-8')
 
 
+#sali
+
     @classmethod
     def tearDown(self):
         del self.check
