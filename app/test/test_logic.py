@@ -6,6 +6,8 @@ from flask import Flask
 from app import app,db
 
 class test_login(unittest.TestCase):
+    SQLALCHEMY_DATABASE_URI = "sqlite://"
+    TESTING = True
     def create_app(self):
         app = Flask(__name__)
         app.config['TESTING'] = True
