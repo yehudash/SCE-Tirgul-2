@@ -13,7 +13,7 @@ class test_web(LiveServerTestCase):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
     def create_app(self):
-        # app = Flask(__name__)
+        app = Flask(__name__)
         app.config['TESTING'] = True
         app.config['LIVESERVER_PORT'] = 8943
         app.config['LIVESERVER_TIMEOUT'] = 10
