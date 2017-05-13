@@ -51,9 +51,12 @@ class test_web(LiveServerTestCase):
         assert u'המצביע אינו מופיע בבסיס הנתונים' not in self.browser.page_source or u'המשתמש הנל הצביע כבר' in self.browser.page_source
 
     def bad_login(self):
-        self.browser.find_element_by_id("first_name").send_keys('bad')
-        self.browser.find_element_by_id("last_name").send_keys('bad')
-        id = self.browser.find_element_by_id("id").send_keys('bad')
+        first_name = self.browser.find_element_by_id("first_name")
+        last_name = self.browser.find_element_by_id("last_name")
+        id = self.browser.find_element_by_id("id")
+        first_name.send_keys('bad')
+        last_name.send_keys('bad')
+        id.send_keys('bad')
         id.send_keys(Keys.RETURN)
         assert u'המצביע אינו מופיע בבסיס הנתונים' in self.browser.page_source
 
