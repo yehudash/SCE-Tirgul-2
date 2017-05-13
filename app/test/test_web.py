@@ -31,6 +31,15 @@ class test_web(LiveServerTestCase):
             self.insert_data_to_db()
         return self.app
 
+    def insert_data_to_db(self):
+        db.session.commit()
+        admon = User('tomer', 'admon', '123')
+        avoda = Party(u'העבודה',
+                      'https://www.am-1.org.il/wp-content/uploads/2015/03/%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%94.-%D7%A6%D7%99%D7%9C%D7%95%D7%9D-%D7%99%D7%97%D7%A6.jpg')
+        db.session.add(avoda)
+        db.session.add(admon)
+        db.session.commit()
+
     @classmethod
     def setUp(self):
         # self.app = app
@@ -51,14 +60,7 @@ class test_web(LiveServerTestCase):
 
         assert u'המצביע אינו מופיע בבסיס הנתונים' not in self.browser.page_source or u'המשתמש הנל הצביע כבר' in self.browser.page_source
 
-    def insert_data_to_db(self):
-        db.session.commit()
-        admon = User('tomer', 'admon', '123')
-        avoda = Party(u'העבודה',
-                      'https://www.am-1.org.il/wp-content/uploads/2015/03/%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%94.-%D7%A6%D7%99%D7%9C%D7%95%D7%9D-%D7%99%D7%97%D7%A6.jpg')
-        db.session.add(avoda)
-        db.session.add(admon)
-        db.session.commit()
+
 
 
 
