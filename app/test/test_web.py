@@ -31,6 +31,7 @@ class test_web(LiveServerTestCase):
             self.insert_data_to_db()
         return self.app
 
+    @classmethod
     def insert_data_to_db(self):
         db.session.commit()
         admon = User('tomer', 'admon', '123')
