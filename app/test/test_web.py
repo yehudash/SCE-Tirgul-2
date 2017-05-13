@@ -7,9 +7,10 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from flask import Flask
 from flask_testing import LiveServerTestCase
+from flask_config import basedir
 
 from app.models import User, Party
-from app import db
+from app import app , db
 
 class test_web(LiveServerTestCase):
     SQLALCHEMY_DATABASE_URI ="sqlite://"
@@ -26,6 +27,8 @@ class test_web(LiveServerTestCase):
 
     @classmethod
     def setUp(self):
+        self.app = app.create_app(self)
+        db.init_app(self.app)
         db.drop_all(self)
         db.create_all()
         db.insert_data_to_db(self)
