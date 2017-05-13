@@ -14,7 +14,7 @@ from app import app , db
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 class test_web(LiveServerTestCase):
-    @classmethod
+
     def create_app(self):
         self.app = app
         # self.app = Flask(__name__)
@@ -31,7 +31,6 @@ class test_web(LiveServerTestCase):
             self.insert_data_to_db()
         return self.app
 
-    @classmethod
     def insert_data_to_db(self):
         db.session.commit()
         admon = User('tomer', 'admon', '123')
@@ -41,7 +40,6 @@ class test_web(LiveServerTestCase):
         db.session.add(admon)
         db.session.commit()
 
-    @classmethod
     def setUp(self):
         # self.app = app
         # create a new Firefox session
@@ -63,9 +61,6 @@ class test_web(LiveServerTestCase):
 
 
 
-
-
-    @classmethod
     def tearDown(self):
         self.browser.quit()
 
