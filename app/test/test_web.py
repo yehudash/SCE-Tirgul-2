@@ -29,7 +29,7 @@ class test_web(LiveServerTestCase):
         with self.app.app_context():
             db.drop_all()
             db.create_all()
-            self.insert_data_to_db(self)
+            self.insert_data_to_db(self.app)
         return self.app
 
     @classmethod
