@@ -7,14 +7,13 @@ from app import app,db
 
 class test_login(unittest.TestCase):
     def create_app(self):
-        self.app =app
-        self.app = Flask(__name__)
-        self.app.config['TESTING'] = True
-        db.init_app(self.app)
-        with self.app.app_context():
+        app = Flask(__name__)
+        app.config['TESTING'] = True
+        db.init_app(app)
+        with app.app_context():
             db.create_all()
             self.insert_data_to_db()
-        return self.app
+        return app
 
     def setUp(self):
         self.check =app.test_client()

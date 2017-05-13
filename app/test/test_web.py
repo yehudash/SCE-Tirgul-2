@@ -20,7 +20,6 @@ class test_web(LiveServerTestCase):
         app.config['LIVESERVER_TIMEOUT'] = 10
         db.init_app(app)
         with app.app_context():
-            db.drop_all()
             db.create_all()
             self.insert_data_to_db()
         return app
@@ -55,6 +54,8 @@ class test_web(LiveServerTestCase):
 
     def tearDown(self):
         self.browser.quit()
+        db.session.remove()
+        db.drop_all()
 
 
 
