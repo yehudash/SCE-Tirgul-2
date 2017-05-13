@@ -17,13 +17,12 @@ class test_web(LiveServerTestCase):
     @classmethod
     def create_app(self):
         self.app = app
-        self.app = Flask(__name__)
+        # self.app = Flask(__name__)
         self.app.config['TESTING'] = True
         self.app.config['WTF_CSRF_ENABLED'] = False
         self.app.config['LIVESERVER_PORT'] = 8943
         self.app.config['WTF_CSRF_ENABLED'] = False
-        # Default timeout is 5 seconds
-        self.app.config['LIVESERVER_TIMEOUT'] = 10
+        # self.app.config['LIVESERVER_TIMEOUT'] = 10
         self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
         db.init_app(self.app)
         with self.app.app_context():
