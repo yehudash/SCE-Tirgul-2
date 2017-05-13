@@ -18,27 +18,23 @@ class test_web(LiveServerTestCase):
     TESTING = True
     @classmethod
     def create_app(self):
-        app = Flask(__name__)
-        app.config['TESTING'] = True
+        self.app = app
+        self.app = Flask(__name__)
+        self.app.config['TESTING'] = True
         # Default port is 5000
-        app.config['LIVESERVER_PORT'] = 8943
+        self.app.config['LIVESERVER_PORT'] = 8943
         # Default timeout is 5 seconds
-        app.config['LIVESERVER_TIMEOUT'] = 10
+        self.app.config['LIVESERVER_TIMEOUT'] = 10
         db.init_app(self.app)
         with self.app.app_context():
             db.drop_all(self)
             db.create_all()
             db.insert_data_to_db(self)
-        return app
+        return self.app
 
     @classmethod
     def setUp(self):
-        self.app = app
-        db.init_app(self.app)
-        with self.app.app_context():
-            db.drop_all(self)
-            db.create_all()
-            db.insert_data_to_db(self)
+        # self.app = app
         # create a new Firefox session
         self.browser = webdriver.PhantomJS()
         # nevigate to the application home page
