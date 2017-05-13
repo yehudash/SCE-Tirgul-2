@@ -13,7 +13,7 @@ from app.models import User, Party
 from app import app , db
 
 class test_web(LiveServerTestCase):
-    SQLALCHEMY_DATABASE_URI ="sqlite://"
+    SQLALCHEMY_DATABASE_URI ='sqlite:///' + os.path.join(basedir, 'test.db')
     TESTING = True
     @classmethod
     def create_app(self):
