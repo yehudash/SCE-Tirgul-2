@@ -27,7 +27,7 @@ class test_web(LiveServerTestCase):
 
     @classmethod
     def setUp(self):
-        self.app = app.create_app(self)
+        self.app = app
         db.init_app(self.app)
         db.drop_all(self)
         db.create_all()
