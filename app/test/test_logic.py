@@ -41,7 +41,7 @@ class test_login(unittest.TestCase):
 
     def test_invalid_user(self):
         invalid_user=self.check.post('login', data = { 'first_name':'sali' , 'last_name': 'impostor', 'id':'2407' } ,  follow_redirects=True)
-        assert u'המצביע אינו מופיע בבסיס הנתונים' in invalid_user.data
+        return u'המצביע אינו מופיע בבסיס הנתונים' in invalid_user.data
 
     # def test_customer_not_exist_in_db(self):
     #     invalid_customer = self.check.post('login' , data = dict(first_name = 'impostor' , last_name='impostor' , id = '0' ))
