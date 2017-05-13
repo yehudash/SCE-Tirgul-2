@@ -36,7 +36,6 @@ class test_login(unittest.TestCase):
     # #     assert u'המצביע אינו מופיע בבסיס הנתונים' in invalid_customer.data.decode('utf-8')
 
 
-
     def tearDown(self):
         del self.check
         db.session.remove()
