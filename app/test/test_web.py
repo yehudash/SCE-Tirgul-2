@@ -12,6 +12,7 @@ from flask_config import basedir
 from app.models import User, Party
 from app import app , db
 
+basedir = os.path.abspath(os.path.dirname(__file__))
 class test_web(LiveServerTestCase):
     SQLALCHEMY_DATABASE_URI ='sqlite:///' + os.path.join(basedir, 'test.db')
     TESTING = True
@@ -20,7 +21,7 @@ class test_web(LiveServerTestCase):
         app = Flask(__name__)
         app.config['TESTING'] = True
         # Default port is 5000
-        app.config['LIVESERVER_PORT'] = 5000
+        app.config['LIVESERVER_PORT'] = 8943
         # Default timeout is 5 seconds
         app.config['LIVESERVER_TIMEOUT'] = 10
         return app
@@ -29,9 +30,10 @@ class test_web(LiveServerTestCase):
     def setUp(self):
         self.app = app
         db.init_app(self.app)
-        db.drop_all(self)
-        db.create_all()
-        db.insert_data_to_db(self)
+        with self.app.app_context():
+            db.drop_all(self)
+            db.create_all()
+            db.insert_data_to_db(self)
         # create a new Firefox session
         self.browser = webdriver.PhantomJS()
         # nevigate to the application home page
