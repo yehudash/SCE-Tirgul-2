@@ -18,7 +18,7 @@ class test_web(LiveServerTestCase):
     TESTING = True
     def create_app(self):
         self.app = app
-        self.app = Flask(__name__)
+        # self.app = Flask(__name__)
         self.app.config['TESTING'] = True
         self.app.config['LIVESERVER_PORT'] = 8943
         # self.app.config['LIVESERVER_TIMEOUT'] = 10
