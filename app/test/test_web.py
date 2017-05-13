@@ -47,7 +47,7 @@ class test_web(LiveServerTestCase):
         # create a new Firefox session
         self.browser = webdriver.PhantomJS()
         # nevigate to the application home page
-        self.driver.get(self.get_server_url())
+        self.browser.get(self.get_server_url())
 
 
     def test_enter_system(self):
