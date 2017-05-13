@@ -7,12 +7,9 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from flask import Flask
 from flask_testing import LiveServerTestCase
-from flask_config import basedir
-
 from app.models import User, Party
 from app import app , db
 
-basedir = os.path.abspath(os.path.dirname(__file__))
 class test_web(LiveServerTestCase):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
@@ -21,8 +18,7 @@ class test_web(LiveServerTestCase):
         # self.app = Flask(__name__)
         self.app.config['TESTING'] = True
         self.app.config['LIVESERVER_PORT'] = 8943
-        # self.app.config['LIVESERVER_TIMEOUT'] = 10
-        # self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
+        self.app.config['LIVESERVER_TIMEOUT'] = 10
         db.init_app(self.app)
         with self.app.app_context():
             db.drop_all()
@@ -40,7 +36,6 @@ class test_web(LiveServerTestCase):
         db.session.commit()
 
     def setUp(self):
-        # self.app = app
         # create a new Firefox session
         self.browser = webdriver.PhantomJS()
         # nevigate to the application home page
