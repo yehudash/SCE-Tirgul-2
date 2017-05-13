@@ -60,7 +60,6 @@ class test_web(LiveServerTestCase):
         assert u'המצביע אינו מופיע בבסיס הנתונים' not in self.browser.page_source or u'המשתמש הנל הצביע כבר' in self.browser.page_source
 
 
-
     def tearDown(self):
         self.browser.quit()
 
