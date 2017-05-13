@@ -53,7 +53,8 @@ class test_web(LiveServerTestCase):
     def bad_login(self):
         self.browser.find_element_by_id("first_name").send_keys('bad')
         self.browser.find_element_by_id("last_name").send_keys('bad')
-        self.browser.find_element_by_id("id").send_keys('bad' + Keys.RETURN)
+        id = self.browser.find_element_by_id("id").send_keys('bad')
+        id.send_keys(Keys.RETURN)
         assert u'המצביע אינו מופיע בבסיס הנתונים' in self.browser.page_source
 
 
