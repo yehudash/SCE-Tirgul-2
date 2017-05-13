@@ -24,6 +24,11 @@ class test_web(LiveServerTestCase):
         app.config['LIVESERVER_PORT'] = 8943
         # Default timeout is 5 seconds
         app.config['LIVESERVER_TIMEOUT'] = 10
+        db.init_app(self.app)
+        with self.app.app_context():
+            db.drop_all(self)
+            db.create_all()
+            db.insert_data_to_db(self)
         return app
 
     @classmethod
@@ -37,7 +42,7 @@ class test_web(LiveServerTestCase):
         # create a new Firefox session
         self.browser = webdriver.PhantomJS()
         # nevigate to the application home page
-        self.browser.get('http://localhost:5000/')
+        self.driver.get(self.get_server_url())
 
 
     def test_enter_system(self):
