@@ -28,7 +28,10 @@ class test_login(unittest.TestCase):
         self.assertEqual(invalid_login.status_code , 400);# 400 is for bad request
 
     def test_invalid_user(self):
-        invalid_user=self.check.post('/login', data = { 'first_name':'sali' , 'last_name': 'impostor', 'id':'2407'})
+        try:
+            invalid_user=self.check.post('/login', data = { 'first_name':'sali' , 'last_name': 'impostor', 'id':'2407'})
+        except :
+            pass
         return u'המצביע אינו מופיע בבסיס הנתונים' in invalid_user.data.decode("utf-8")
 
     # def test_customer_not_exist_in_db(self):
