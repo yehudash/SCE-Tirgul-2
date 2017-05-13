@@ -1,6 +1,7 @@
 
 # -*- coding: utf-8 -*-
 
+import os
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -13,7 +14,7 @@ class test_web(LiveServerTestCase):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
     def create_app(self):
-        app = Flask(__name__)
+        # app = Flask(__name__)
         app.config['TESTING'] = True
         app.config['LIVESERVER_PORT'] = 8943
         app.config['LIVESERVER_TIMEOUT'] = 10
@@ -38,23 +39,25 @@ class test_web(LiveServerTestCase):
         # nevigate to the application home page
         self.browser.get(self.get_server_url())
 
-    def good_login(self):
-        self.browser.find_element_by_id("first_name").send_keys('tomer')
-        self.browser.find_element_by_id("last_name").send_keys('tomer')
-        self.browser.find_element_by_id("id").send_keys('1234' + Keys.RETURN)
+
+    def test_enter_system(self):
+        first_name = self.browser.find_element_by_id("first_name")
+        last_name = self.browser.find_element_by_id("last_name")
+        id = self.browser.find_element_by_id("id")
+        first_name.send_keys('tomer')
+        last_name.send_keys('admon')
+        id.send_keys('123')
+        id.send_keys(Keys.RETURN)
         assert u'המצביע אינו מופיע בבסיס הנתונים' not in self.browser.page_source or u'המשתמש הנל הצביע כבר' in self.browser.page_source
 
-    def bad_login(self):
-        self.browser.find_element_by_id("first_name").send_keys('bad')
-        self.browser.find_element_by_id("last_name").send_keys('bad')
-        self.browser.find_element_by_id("id").send_keys('bad' + Keys.RETURN)
-        assert u'המצביע אינו מופיע בבסיס הנתונים' in self.browser.page_source
 
     def tearDown(self):
         self.browser.quit()
         with app.app_context():
             db.session.remove()
             db.drop_all()
+
+
 
 if __name__ == '__main__':
     unittest.main()
