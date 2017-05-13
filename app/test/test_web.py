@@ -14,17 +14,16 @@ class test_web(LiveServerTestCase):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
     def create_app(self):
-        self.app = app
         # self.app = Flask(__name__)
-        self.app.config['TESTING'] = True
-        self.app.config['LIVESERVER_PORT'] = 8943
-        self.app.config['LIVESERVER_TIMEOUT'] = 10
-        db.init_app(self.app)
-        with self.app.app_context():
+        app.config['TESTING'] = True
+        app.config['LIVESERVER_PORT'] = 8943
+        app.config['LIVESERVER_TIMEOUT'] = 10
+        db.init_app(app)
+        with app.app_context():
             db.drop_all()
             db.create_all()
             self.insert_data_to_db()
-        return self.app
+        return app
 
     def insert_data_to_db(self):
         db.session.commit()
