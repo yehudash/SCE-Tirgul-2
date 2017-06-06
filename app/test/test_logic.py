@@ -44,7 +44,7 @@ class test_login(unittest.TestCase):
         return u'המצביע אינו מופיע בבסיס הנתונים' in invalid_user.data.decode('utf-8')
 
     # def test_customer_not_exist_in_db(self):
-        invalid_customer = self.check.post('login' , data = dict(first_name = 'impostor' , last_name='impostor' , id = '0' ))
+    # invalid_customer = self.check.post('login' , data = dict(first_name = 'impostor' , last_name='impostor' , id = '0' ))
     #     assert u'המצביע אינו מופיע בבסיס הנתונים' in invalid_customer.data.decode('utf-8')
 
 
