@@ -11,6 +11,8 @@ class test_login(unittest.TestCase):
     TESTING = True
     def create_app(self):
         app = Flask(__name__)
+        app.config.from_object(config[config_name])
+        config['TESTING'].init_app(app)
         app.config['TESTING'] = True
         db.init_app(app)
         with app.app_context():
