@@ -40,9 +40,12 @@ class test_login(unittest.TestCase):
         self.assertEqual(invalid_login.status_code , 400);# 400 is for bad request
 
     def test_invalid_user(self):
-        invalid_user=self.check.post('login', data = { 'first_name':'sali' , 'last_name': 'impostor', 'id':'2407' } ,  follow_redirects=True)
-        # return u'המצביע אינו מופיע בבסיס הנתונים' in invalid_user.data.decode('utf-8')
-        self.assertEqual(invalid_user.status_code , 404);
+        invalid_user = {'first_name': 'sali', 'last_name': 'impostor', 'id': 2407}
+        response = self.check.post('login', data=invalid_user, follow_redirects=True)
+        self.assertEqual(response.status_code, 404)
+        err = u'המצביע אינו מופיע בבסיס הנתונים'
+        resp = response.data.decode('utf-8')
+        assert err.decode('utf-8') in resp
 
     # def test_customer_not_exist_in_db(self):
     # invalid_customer = self.check.post('login' , data = dict(first_name = 'impostor' , last_name='impostor' , id = '0' ))
