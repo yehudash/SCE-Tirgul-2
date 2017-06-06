@@ -7,11 +7,17 @@ from app import app,db
 from app.models import User, Party
 
 class test_login(unittest.TestCase):
-    SQLALCHEMY_DATABASE_URI = "sqlite://"
+    #SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
     def create_app(self):
         app = Flask(__name__)
-        app.config['TESTING'] = True
+
+        class LoginTestCase(unittest.TestCase):
+            def setUp(self):
+                self.app = app
+        self.app.config['WTF_CSRF_ENABLED'] = False
+        self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
+        #app.config['TESTING'] = True
         db.init_app(app)
         with app.app_context():
             db.create_all()
