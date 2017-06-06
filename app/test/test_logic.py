@@ -7,13 +7,13 @@ from app import app,db
 from app.models import User, Party
 
 class test_login(unittest.TestCase):
-    #SQLALCHEMY_DATABASE_URI = "sqlite://"
+    SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
     def create_app(self):
         app = Flask(__name__)
-       # app.config['TESTING'] = True
-        self.app.config['WTF_CSRF_ENABLED'] = False
-        self.app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite://" ;
+        app.config.from_object(app.config['TESTING'])
+        app.config['TESTING'].init_app(app)
+        app.config['TESTING'] = True
         db.init_app(app)
         with app.app_context():
             db.create_all()
@@ -30,9 +30,7 @@ class test_login(unittest.TestCase):
         db.session.commit()
 
     def setUp(self):
-        db.drop_all()
         self.check =app.test_client()
-
 
     def test_manager(self):
         response = self.check.get('app/manager')
@@ -48,10 +46,15 @@ class test_login(unittest.TestCase):
         # return u'המצביע אינו מופיע בבסיס הנתונים' in invalid_user.data.decode('utf-8')
         self.assertEqual(invalid_user.status_code , 500);
 
+    # def test_customer_not_exist_in_db(self):
+    # invalid_customer = self.check.post('login' , data = dict(first_name = 'impostor' , last_name='impostor' , id = '0' ))
+    #     assert u'המצביע אינו מופיע בבסיס הנתונים' in invalid_customer.data.decode('utf-8')
+
+
     def tearDown(self):
         del self.check
         db.session.remove()
-
+        db.drop_all()
 
 
 if __name__ == '__main__':
