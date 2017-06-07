@@ -42,7 +42,7 @@ class test_web(unittest.TestCase):
     def test_invalid_user(self):
         invalid_user = self.check.post('login', data={'first_name': 'sali', 'last_name': 'impostor', 'id': '2407'},
                                        follow_redirects=True)
-        return u'המצביע אינו מופיע בבסיס הנתונים' in invalid_user.data.data.decode('utf-8')
+        return u'המצביע אינו מופיע בבסיס הנתונים' in invalid_user.data.decode('utf-8')
 
     # def setUp(self):
     #     self.browser = webdriver.PhantomJS()
