@@ -40,19 +40,21 @@ class test_login(LiveServerTestCase):
         # nevigate to the application home page
         self.browser.get(self.get_server_url())
 
+    def test_good_login(self):
+        first_name = self.browser.find_element_by_id("first_name").send_keys('tomer')
+        last_name = self.browser.find_element_by_id("last_name").send_keys('admon')
+        id = self.browser.find_element_by_id("id").send_keys('123' +Keys.RETURN )
+        assert u'המצביע אינו מופיע בבסיס הנתונים' not in self.browser.page_source or u'המשתמש הנל הצביע כבר' in self.browser.page_source
 
-    def test_manager(self):
-        response = self.check.get('app/manager')
-        self.assertEqual(response.status_code, 404)
-
-    def test_for_missing_id(self):
-        # this test ensures that you cannot get an access without id number
-        invalid_login = self.check.post('login' , data = { 'first_name':'tomer' , 'last_name': 'admon'} ,  follow_redirects=True)
-        self.assertEqual(invalid_login.status_code , 400);# 400 is for bad request
-
-    def test_invalid_user(self):
-        invalid_user=self.check.post('login', data = { 'first_name':'sali' , 'last_name': 'impostor', 'id':'2407' } ,  follow_redirects=True)
-        self.assertEqual(invalid_user.status_code , 500)
+    def test_bad_login(self):
+        first_name = self.browser.find_element_by_id("first_name")
+        last_name = self.browser.find_element_by_id("last_name")
+        id = self.browser.find_element_by_id("id")
+        first_name.send_keys('bad')
+        last_name.send_keys('bad')
+        id.send_keys('bad')
+        id.send_keys(Keys.RETURN)
+        assert u'המצביע אינו מופיע בבסיס הנתונים' in self.browser.page_source
 
 
     def tearDown(self):
