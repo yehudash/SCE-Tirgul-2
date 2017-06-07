@@ -15,7 +15,6 @@ class test_login(unittest.TestCase):
     TESTING = True
     def create_app(self):
         app = Flask(__name__)
-
         class LoginTestCase(unittest.TestCase):
             def setUp(self):
                 self.app = app
