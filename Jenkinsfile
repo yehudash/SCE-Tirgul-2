@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker 'python:3.6.1' }
+    agent any
     stages {
         stage('clone') {
             steps {
