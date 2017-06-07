@@ -6,6 +6,7 @@ import os
 from flask import Flask
 from app import app,db
 from app.models import User, Party
+from selenium.webdriver.common.keys import Keys
 from flask_config import basedir
 from selenium import webdriver
 from flask_testing import LiveServerTestCase

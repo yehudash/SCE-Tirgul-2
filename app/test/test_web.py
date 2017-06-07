@@ -3,7 +3,6 @@
 
 import os
 import unittest
-from selenium.webdriver.common.keys import Keys
 from flask import Flask
 from app.models import User, Party
 from app import app , db
