@@ -38,7 +38,7 @@ class test_login(unittest.TestCase):
 
     def test_manager(self):
         response = self.check.get('app/manager')
-        self.assertEqual(response.status_code, 404);
+        self.assertEqual(response.status_code, 404)
 
     def test_for_missing_id(self):
         # this test ensures that you cannot get an access without id number
