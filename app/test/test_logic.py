@@ -41,18 +41,18 @@ class test_login(LiveServerTestCase):
         self.browser.get(self.get_server_url())
 
 
-    # def test_manager(self):
-    #     response = self.check.get('app/manager')
-    #     self.assertEqual(response.status_code, 404)
-    #
-    # def test_for_missing_id(self):
-    #     # this test ensures that you cannot get an access without id number
-    #     invalid_login = self.check.post('login' , data = { 'first_name':'tomer' , 'last_name': 'admon'} ,  follow_redirects=True)
-    #     self.assertEqual(invalid_login.status_code , 400);# 400 is for bad request
-    #
-    # def test_invalid_user(self):
-    #     invalid_user=self.check.post('login', data = { 'first_name':'sali' , 'last_name': 'impostor', 'id':'2407' } ,  follow_redirects=True)
-    #     self.assertEqual(invalid_user.status_code , 500)
+    def test_manager(self):
+        response = self.check.get('app/manager')
+        self.assertEqual(response.status_code, 404)
+
+    def test_for_missing_id(self):
+        # this test ensures that you cannot get an access without id number
+        invalid_login = self.check.post('login' , data = { 'first_name':'tomer' , 'last_name': 'admon'} ,  follow_redirects=True)
+        self.assertEqual(invalid_login.status_code , 400);# 400 is for bad request
+
+    def test_invalid_user(self):
+        invalid_user=self.check.post('login', data = { 'first_name':'sali' , 'last_name': 'impostor', 'id':'2407' } ,  follow_redirects=True)
+        self.assertEqual(invalid_user.status_code , 500)
 
 
     def tearDown(self):
