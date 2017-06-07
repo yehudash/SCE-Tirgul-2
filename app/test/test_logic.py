@@ -24,6 +24,7 @@ class test_login(unittest.TestCase):
             self.insert_data_to_db()
         return app
 
+
     def insert_data_to_db(self):
         db.session.commit()
         admon = User('tomer', 'admon', '123')

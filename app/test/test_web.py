@@ -33,7 +33,6 @@ class test_web(LiveServerTestCase):
         db.session.commit()
 
     def setUp(self):
-        # create a new Firefox session
         self.browser = webdriver.PhantomJS()
         # nevigate to the application home page
         self.browser.get(self.get_server_url())
