@@ -8,7 +8,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 
 from app import app, login_manager , db
 #from .forms import LoginForm
-from models import User, Party
+from app.models import User, Party
 from sqlalchemy import update
 
 @login_manager.user_loader
