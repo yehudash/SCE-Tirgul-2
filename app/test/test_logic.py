@@ -2,12 +2,16 @@
 
 import sys
 import unittest
+import os
 from flask import Flask
 from app import app,db
 from app.models import User, Party
+from flask_config import basedir
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 class test_login(unittest.TestCase):
-    SQLALCHEMY_DATABASE_URI = "sqlite://"
+    #SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
     def create_app(self):
         app = Flask(__name__)
@@ -16,12 +20,13 @@ class test_login(unittest.TestCase):
             def setUp(self):
                 self.app = app
         self.app.config['WTF_CSRF_ENABLED'] = False
-        #self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
-        app.config['TESTING'] = True
+        self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
+        #app.config['TESTING'] = True
+        db.init_app(app)
         with app.app_context():
+            db.drop_all()
             db.create_all()
             self.insert_data_to_db()
-        db.init_app(app)
         return app
 
     def insert_data_to_db(self):
@@ -34,7 +39,6 @@ class test_login(unittest.TestCase):
         db.session.commit()
 
     def setUp(self):
-        self.insert_data_to_db()
         self.check =app.test_client()
 
     def test_manager(self):
@@ -56,9 +60,12 @@ class test_login(unittest.TestCase):
 
 
     def tearDown(self):
+
         del self.check
         db.session.remove()
-        db.drop_all()
+        db.init_app(self.app)
+        with self.app.app_context():
+            db.drop_all()
 
 
 if __name__ == '__main__':
