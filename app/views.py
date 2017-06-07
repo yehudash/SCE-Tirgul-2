@@ -7,8 +7,8 @@ from flask import send_from_directory
 from flask_login import login_user, logout_user, current_user, login_required
 
 from app import app, login_manager , db
-from .forms import LoginForm
-from .models import User, Party
+#from .forms import LoginForm
+from models import User, Party
 from sqlalchemy import update
 
 @login_manager.user_loader
@@ -50,7 +50,6 @@ def login():
         fn = request.form['first_name']
         ln = request.form['last_name']
         uid = request.form['id']
-
 
         user = User.query.filter_by(first_name= fn , last_name=ln , id =uid).first()
         if user:

@@ -55,4 +55,3 @@ class Party(db.Model):
 
     def __repr__(self):
         return '<Party %r>' % self.name
-
