@@ -8,24 +8,20 @@ from app import app,db
 from app.models import User, Party
 from flask_config import basedir
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-
 class test_login(unittest.TestCase):
-    #SQLALCHEMY_DATABASE_URI = "sqlite://"
+    SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
     def create_app(self):
         app = Flask(__name__)
         class LoginTestCase(unittest.TestCase):
             def setUp(self):
                 self.app = app
-        self.app.config['WTF_CSRF_ENABLED'] = False
-        self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
         app.config['TESTING'] = True
+        db.init_app(app)
         with app.app_context():
             db.drop_all()
             db.create_all()
             self.insert_data_to_db()
-        db.init_app(app)
         return app
 
     def insert_data_to_db(self):
@@ -53,18 +49,12 @@ class test_login(unittest.TestCase):
         invalid_user=self.check.post('login', data = { 'first_name':'sali' , 'last_name': 'impostor', 'id':'2407' } ,  follow_redirects=True)
         self.assertEqual(invalid_user.status_code , 500)
 
-    # def test_customer_not_exist_in_db(self):
-    #     invalid_customer = self.check.post('login' , data = dict(first_name = 'impostor' , last_name='impostor' , id = '0' ))
-    # #     assert u'המצביע אינו מופיע בבסיס הנתונים' in invalid_customer.data.decode('utf-8')
-
 
     def tearDown(self):
-
         del self.check
-        db.session.remove()
-        db.init_app(app)
         with app.app_context():
             db.drop_all()
+            db.session.remove()
 
 
 if __name__ == '__main__':
