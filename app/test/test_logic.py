@@ -35,6 +35,7 @@ class test_login(unittest.TestCase):
 
     def setUp(self):
         self.check =app.test_client()
+        self.insert_data_to_db()
 
     def test_manager(self):
         response = self.check.get('app/manager')
