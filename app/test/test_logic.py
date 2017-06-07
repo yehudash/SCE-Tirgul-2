@@ -21,12 +21,12 @@ class test_login(unittest.TestCase):
                 self.app = app
         self.app.config['WTF_CSRF_ENABLED'] = False
         self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
-        #app.config['TESTING'] = True
-        db.init_app(app)
+        app.config['TESTING'] = True
         with app.app_context():
             db.drop_all()
             db.create_all()
             self.insert_data_to_db()
+        db.init_app(app)
         return app
 
     def insert_data_to_db(self):
