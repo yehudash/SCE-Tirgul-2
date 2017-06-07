@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Execute unit tests') {
             steps {
-                sh 'nosetests --with-xunit'
+                sh 'nosetests --with-xunit app.test.test_web.py' 
             }
         }
 
