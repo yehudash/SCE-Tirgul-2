@@ -2,7 +2,9 @@ pipeline {
     agent { docker 'python:3.6.1' }
     stages {
         stage('clone') {
-            git 'https://github.com/yehudash/SCE-Tirgul-2'
+            steps {
+                git 'https://github.com/yehudash/SCE-Tirgul-2'
+            }
         }
     }
 }
