@@ -13,7 +13,6 @@ from flask_testing import LiveServerTestCase
 class test_login(LiveServerTestCase):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
-
     def create_app(self):
         #app = Flask(__name__)
         app.config['TESTING'] = True
