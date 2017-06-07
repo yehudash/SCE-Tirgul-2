@@ -63,8 +63,8 @@ class test_login(unittest.TestCase):
 
         del self.check
         db.session.remove()
-        db.init_app(self.app)
-        with self.app.app_context():
+        db.init_app(app)
+        with app.app_context():
             db.drop_all()
 
 
