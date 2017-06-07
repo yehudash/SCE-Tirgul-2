@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('clone') {
+        stage('Commit new content to source control') {
             steps {
                 git 'https://github.com/yehudash/SCE-Tirgul-2'
             }
@@ -16,6 +16,11 @@ pipeline {
                 sh 'nosetests --with-xunit app/test/test_logic.py' 
             }
         }
-
+        stage('Execute performance tests'){
+        
+        }
+        stage('Initiate menual testers environment'){
+        
+        }
     }
 }
