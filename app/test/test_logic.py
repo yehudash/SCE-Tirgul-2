@@ -7,7 +7,7 @@ from app import app,db
 from app.models import User, Party
 
 class test_login(unittest.TestCase):
-    #SQLALCHEMY_DATABASE_URI = "sqlite://"
+    SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
     def create_app(self):
         app = Flask(__name__)
