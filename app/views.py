@@ -16,7 +16,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-def validateAndAdd(party_name: object) -> object:
+def validateAndAdd(party_name):
     party =  Party.query.filter_by(name=party_name).first()
     party.votes +=  1
 
@@ -25,12 +25,8 @@ def validateAndAdd(party_name: object) -> object:
 @login_required
 def index():
     if request.method == 'POST':
-        #if request.form['vote']=="false":
-            #return redirect(url_for('login'))
-
         pn= request.form['party_name']
         validateAndAdd(pn)
-
         ########################
         user = User.query.filter_by(id=current_user.id).first()
         user.voted = 1

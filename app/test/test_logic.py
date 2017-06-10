@@ -25,7 +25,6 @@ class test_login(LiveServerTestCase):
             self.insert_data_to_db()
         return app
 
-
     def insert_data_to_db(self):
         db.session.commit()
         a = User('tomer', 'admon', '123')
