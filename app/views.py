@@ -16,25 +16,28 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-def validateAndAdd(party_name):
+def validateAndAdd(party_name: object) -> object:
     party =  Party.query.filter_by(name=party_name).first()
     party.votes +=  1
 
-@app.route('/', methods=['GET'])
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/', methods=['POST','GET'])
+@app.route('/index', methods=['POST', 'GET'])
 @login_required
 def index():
     if request.method == 'POST':
-        validateAndAdd(request.form['party_name'])
+        #if request.form['vote']=="false":
+            #return redirect(url_for('login'))
 
-        #####
+        pn= request.form['party_name']
+        validateAndAdd(pn)
+
+        ###############################
         user = User.query.filter_by(id=current_user.id).first()
         user.voted = 1
         db.session.commit()
-
         return redirect(url_for('login'))
     g.user = current_user #global user parameter used by flask framwork
-    parties = Party.query.all() #this is a demo comment
+    parties = Party.query.all()
     return render_template('index.html',
                            title='Home',
                            user=g.user,

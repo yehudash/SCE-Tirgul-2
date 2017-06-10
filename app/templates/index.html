@@ -2,6 +2,9 @@
 <!-- extend base layout -->
 {% extends "base.html" %}
 
+<head>
+<script src="jquery-3.2.1.min.js"></script>
+</head>
 
 {% block content %}
     <div class="container" align="center">
@@ -22,7 +25,21 @@
             </div>
         {% endfor %}
             <div class="submitbote">
-            <button type="submit" name ="vote" class="btn btn-primary">סיום</button>
+                <button id="vote" type="button" onclick="clicked()"  name ="vote" class="btn btn-primary">סיום
+
+               <script type="text/javascript">
+                function clicked()
+                {
+                     var r=confirm('האם אתה בטוח בבחירתך ?');
+                     var btn=document.getElementById('vote');
+                     if(r==true)
+                     {
+                        var btn=document.getElementById('vote');
+                        btn.setAttribute('type','submit');
+                     }
+                }
+                </script>
+                </button>
             </div>
         </form>
     </div>

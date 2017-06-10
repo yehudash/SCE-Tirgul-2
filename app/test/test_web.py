@@ -44,12 +44,12 @@ class test_web(unittest.TestCase):
                                        follow_redirects=True)
         return u'המצביע אינו מופיע בבסיס הנתונים' in invalid_user.data.decode('utf-8')
 
-    # def setUp(self):
-    #     self.browser = webdriver.PhantomJS()
-    #     # nevigate to the application home page
-    #     self.browser.get(self.get_server_url())
+#########################new##################################
+    def test_for_correct_vote(self):
+        valid_user = self.check.post('login', data={'first_name': 'tomer', 'last_name': 'admon', 'id': '123'},follow_redirects=True)
+        selected_party = self.check.post('index', data={'party_name': 'הליכוד'},follow_redirects=True)
 
-
+##########################################################
     def tearDown(self):
         del self.check
         with app.app_context():
