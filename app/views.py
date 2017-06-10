@@ -31,7 +31,7 @@ def index():
         pn= request.form['party_name']
         validateAndAdd(pn)
 
-        ###############################
+        ########################
         user = User.query.filter_by(id=current_user.id).first()
         user.voted = 1
         db.session.commit()
