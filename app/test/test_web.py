@@ -46,15 +46,15 @@ class test_web(unittest.TestCase):
         return u'המצביע אינו מופיע בבסיס הנתונים' in invalid_user.data.decode('utf-8')
 
 ########################new##################################
-    def test_for_correct_vote(self):
-        valid_user = self.check.post('login', data={'first_name': 'tomer', 'last_name': 'admon', 'id': '123'},follow_redirects=True)
-        selected_party = self.check.post('index', data={'party_name': 'הליכוד'},follow_redirects=True)
-        party_from_db= Party.query.filter_by(p=selected_party.name).first()
-        old_vote = party_from_db.votes # the current votes
-        self.find_element_by_css_selector('submitbote').click() #now the user click select
-        new_vote = party_from_db.votes
-        #Now we will compare the number of old votes plus one and the new number of votes
-        self.assertEqual((new_vote),(old_vote +1))
+    # def test_for_correct_vote(self):
+    #     valid_user = self.check.post('login', data={'first_name': 'tomer', 'last_name': 'admon', 'id': '123'},follow_redirects=True)
+    #     selected_party = self.check.post('index', data={'party_name': 'הליכוד'},follow_redirects=True)
+    #     party_from_db= Party.query.filter_by(p=selected_party.name).first()
+    #     old_vote = party_from_db.votes # the current votes
+    #     self.find_element_by_css_selector('submitbote').click() #now the user click select
+    #     new_vote = party_from_db.votes
+    #     #Now we will compare the number of old votes plus one and the new number of votes
+    #     self.assertEqual((new_vote),(old_vote +1))
 
 
     #########################################################
