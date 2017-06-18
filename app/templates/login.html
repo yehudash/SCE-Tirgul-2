@@ -22,7 +22,7 @@
         <label class="loginlabel" for="id">:תעודת זהות</label>
          <input id="id" type="text" placeholder="תעודת זהות" align="right" name="id" value="{{
           request.form.id }}">
-        <input class="btn btn-default" type="submit" value="כניסה">
+        <input class="btn btn-default" id="loginButton" type="submit" value="כניסה">
       </form>
       {% if error %}
         <p class="error" style="color: red"><strong>שגיאה:</strong> {{ error }}</p>
