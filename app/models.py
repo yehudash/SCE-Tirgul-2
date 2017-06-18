@@ -11,7 +11,6 @@ class User(db.Model):
         self.last_name = last_name
         self.id = id
         self.voted = 0
-
     @property
     def is_authenticated(self):
         return True
