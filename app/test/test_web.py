@@ -59,7 +59,8 @@ class test_web(LiveServerTestCase):
         last_name = self.browser.find_element_by_id("last_name").send_keys('admon')
         id = self.browser.find_element_by_id("id").send_keys('123' + Keys.RETURN)
         selected_party = self.browser.find_element_by_tag_name('img').click()
-        party_from_db = Party.query.filter_by(p=selected_party.name).first()
+        with app.app_context():
+            party_from_db = Party.query.filter_by(p=selected_party.name).first()
         old_vote = party_from_db.votes  # the current votes
         self.browser.find_element_by_class_name('btn').submit()
         new_vote = party_from_db.votes
