@@ -5,9 +5,9 @@ server_ip = sys.argv[1] ##'172.31.22.239' ## This is the internal IP of our Clou
 reservation_id = sys.argv[2]
 DEPLOYED_APP_MODEL = 'Generic App Model'
 
+print (sys.argv[2])
 print (sys.argv[3])
 print (sys.argv[4])
-print (sys.argv[5])
 
 session = CloudShellAPISession(server_ip,
                                sys.argv[2],
