@@ -21,7 +21,7 @@ class test_web(LiveServerTestCase):
         db.init_app(app)
         with app.app_context():
             db.drop_all()
-            db.create_all()
+            db.create_all()#hi
             self.insert_data_to_db()
         return app
 
