@@ -16,4 +16,4 @@ sudo pip install -r requirements.txt requirements
 python db_create.py
 
 #run app
-sudo nohup python run.py &
+nohup python run.py
