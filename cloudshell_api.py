@@ -10,9 +10,9 @@ print (sys.argv[4])
 print (sys.argv[5])
 
 session = CloudShellAPISession(server_ip,
+                               sys.argv[2],
                                sys.argv[3],
-                               sys.argv[4],
-                               sys.argv[5])  ##make sure 
+                               sys.argv[4])  ##make sure 
 										  ##to pass these credentials from jenkins and don't store them in GitHub!!
 
 resources = session.GetReservationDetails(reservation_id).ReservationDescription.Resources
