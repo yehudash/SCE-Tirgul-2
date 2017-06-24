@@ -7,7 +7,7 @@ sudo yum -y groupinstall "Development Tools"
 
 sudo easy_install pip
 
-git clonehttps://github.com/yehudash/SCE-Tirgul-2.git
+git clone https://github.com/yehudash/SCE-Tirgul-2.git
 cd SCE-Tirgul-2
 
 #install our app requirements
