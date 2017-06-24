@@ -27,6 +27,6 @@ public_ip = None
 for att in resource_attributes:
     if att.Name == 'Public IP':
         public_ip = att.Value ## for getting the public ip
+	print (public_ip)
         break
-	
-print (my_resource[0].FullAddress)  ## for getting the private ip - internal ip
+
